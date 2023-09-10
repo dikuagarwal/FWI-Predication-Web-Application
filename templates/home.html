@@ -1,0 +1,92 @@
+<html>
+   <head>
+      <style>
+          body {
+              background-image: url('https://images.pexels.com/photos/51951/forest-fire-fire-smoke-conservation-51951.jpeg?auto=compress&cs=tinysrgb&w=600');
+              background-size: cover;
+              background-repeat: no-repeat; 
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              height: 100vh;
+          }
+  
+          .login {
+              background-color: rgba(135, 206, 235, 0.75); /* Add a semi-transparent white background to the form */
+              padding: 10px;
+              border-radius: 10px;
+              text-align: center; 
+              width: 500px;
+          }
+  
+  
+
+        /* Style the submit button */
+        button[type="submit"] {
+            
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        /* Add hover effect to the submit button */
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        input[type="text"] {
+         width: 64%;
+         padding: 10px;
+         border: 1px solid #ccc;
+         border-radius: 5px;
+         font-size: 16px;
+         
+     }
+
+     /* Style the fixed paragraph at the bottom */
+        .fixed-paragraph {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.75); /* Add a semi-transparent background */
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-size: 21px;
+        }
+      </style>
+   </head>
+<body>
+    <div class="login">
+       <h1>FWI Prediction</h1>
+   
+        <!-- Main Input For Receiving Query to our ML -->
+       <form action="{{ url_for('predict_datapoint')}}" method="post">
+           <input type="text" name="Temperature" placeholder="Temperature (10-50 Celsius)" required="required" /><br>
+           <input type="text" name="RH" placeholder="RH (10-100 %)" required="required" /><br>
+           <input type="text" name="Ws" placeholder="Ws (1-40 km/h)" required="required" /><br>
+           <input type="text" name="Rain" placeholder="Rain (0-20 mm)" required="required" /><br>
+           <input type="text" name="FFMC" placeholder="FFMC (25-95)" required="required" /><br>
+           <input type="text" name="DMC" placeholder="DMC (1-70)" required="required" /><br>
+           <input type="text" name="ISI" placeholder="ISI (0-20)" required="required" /><br>
+           <input type="text" name="Classes" placeholder="Classes (0:Not Fire, 1:Fire)" required="required" /><br>
+           <input type="text" name="Region" placeholder="Region (0:Bejaia, 1:Sidi Bel-abbes)" required="required" /><br>
+   
+   
+           <br>
+           <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button><br><hr>
+       </form>
+    <h2 class="heading" style="color: red;">
+      The Fire Weather Index (FWI) is: {{result}}
+    </h2>
+
+    <!-- Fixed position paragraph at the bottom -->
+    <p class="fixed-paragraph">The FWI is a numerical rating of the risk of fire and its intensity. It is widely used to monitor and predict fire danger in forests and grasslands.</p>
+   <body>
+</html>
